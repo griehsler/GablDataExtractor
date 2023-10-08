@@ -1,6 +1,7 @@
 import gablhtmlparser
 import download
 import logging
+import os
 from jsonserialize import serializeCalendarEntries
 from regionsconfig import add_regions
 
@@ -42,10 +43,14 @@ def extract_towns_and_calendars():
     store_entries("calendar.json", calendars)
 
 def extract_all_pdfs(year):
-    towns = get_towns()
+    towns = get_towns("regions.json")
     town_ids = list(map(lambda town: town.town_id, towns))
+    if not os.path.exists("pdfs"):
+        os.makedirs("pdfs")
     for town_id in town_ids:
-        store_pdf(f"pdfs\\{town_id}.pdf", download.get_pdf(year, town_id))
+        logging.info(f"downloading town pdf of {town_id}...")
+        store_pdf(os.path.join("pdfs", f"{town_id}.pdf"), download.get_pdf(year, town_id))
+        logging.info(f"downloaded town pdf of {town_id}.")
 
 extract_towns_and_calendars()
 #extract_all_pdfs(2023)
