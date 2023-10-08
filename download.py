@@ -17,3 +17,8 @@ def get_entries_page(town_id):
 
 def get_towns_page():
     return _fetch_page(None)
+
+def get_pdf(year, town_id):
+    address = f"{_base_address}/noeav/user/vb_bl/dokumente/abfuhrtermine_{year}/{town_id}.pdf"
+    response = requests.get(address)
+    return response.content
