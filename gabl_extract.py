@@ -1,19 +1,27 @@
 import gablhtmlparser
 import download
-from calendarentry import CalendarEntry
+import logging
 from jsonserialize import serializeCalendarEntries
+from regionsconfig import add_regions
 
-def get_towns():
+logging.basicConfig(format='%(message)s', level=20)
+
+def get_towns(regions):
+    logging.info("downloading towns overview...")
     page_text = download.get_towns_page()
     towns = gablhtmlparser.parseTowns(page_text)
+    logging.info("downloaded towns overview.")
+    add_regions(towns, regions)
     return towns
 
 def get_town_entries(gemeinde_ids):
     entries = []
     gablparser = gablhtmlparser.GablHtmlParser()
     for gemeinde_id in gemeinde_ids:
+        logging.info(f"downloading town calendar of {gemeinde_id}...")
         gablparser.feed(download.get_entries_page(gemeinde_id))
         new_entries = list(map(lambda line: gablhtmlparser.parseCalendarEntry(gemeinde_id, line), gablparser.entries))
+        logging.info(f"downloaded town calendar of {gemeinde_id}.")
         entries.extend(new_entries)
 
     return entries
@@ -27,7 +35,7 @@ def store_pdf(filename, content):
         file.write(content)
 
 def extract_towns_and_calendars():
-    towns = get_towns()
+    towns = get_towns("regions.json")
     store_entries("towns.json", towns)
     town_ids = list(map(lambda town: town.town_id, towns))
     calendars = get_town_entries(town_ids)

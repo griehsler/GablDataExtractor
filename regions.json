@@ -1,0 +1,44 @@
+[
+    {
+        "town_id": "30710",
+        "rm": [
+            {
+                "value": "A",
+                "regions": [
+                    "Am Dreimäderlhaus",
+                    "Am Eichenwald"
+                ]
+            },
+            {
+                "value": "B",
+                "regions": [
+                    "Alte Poststraße",
+                    "Am Stadtgraben",
+
+                    "Dr. Donin-Gasse"
+                ]
+            }
+        ],
+        "p": [
+            {
+                "value": "A",
+                "regions": [
+                    "Adolf Eder-Gasse",
+                    "Am Eichenwald",
+
+                    "Dr. Donin-Gasse"
+                ]
+            }
+        ],
+        "gs": [
+            {
+                "value": "A",
+                "regions": [
+                    "Adolf Eder-Gasse",
+
+                    "Dr. Donin-Gasse"
+                ]
+            }
+        ]
+    }
+]

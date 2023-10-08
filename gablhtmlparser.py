@@ -1,7 +1,7 @@
 import re
 import html.parser
-from calendarentry import CalendarEntry
-from town import Town
+from CalendarEntry import CalendarEntry
+from Town import Town
 
 class GablHtmlParser(html.parser.HTMLParser):
     inEntry = False
