@@ -8,7 +8,7 @@ def add_regions(towns, regions):
     region_details = _load_regions(regions)
     for town in towns:
         if town.town_id in region_details:
-            for name, flags in region_details[town.town_id].items():
+            for name, flags in sorted(region_details[town.town_id].items()):
                 town.add_region(Region(name, flags.rm, flags.p, flags.gs))
 
 def _load_regions(regions):
