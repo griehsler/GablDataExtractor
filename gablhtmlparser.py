@@ -33,7 +33,7 @@ def parseCalendarEntry(gemeinde, line):
         match = re.search(_regex2, line)
         return CalendarEntry(gemeinde, match.group("date"), match.group('kind'))
 
-_townRegex = r"<a href=\"\?gem_nr=(?P<id>\d+)[^>]+>(?P<name>[^<]+)<"
+_townRegex = r"<a href=\"\?gem_nr=(?P<id>\d+)[^>]+>(?P<name>[^<^,]+)[^<]*<"
 
 def parseTowns(pageText):
     matches = re.findall(_townRegex, pageText)
