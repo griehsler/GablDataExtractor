@@ -17,9 +17,9 @@ def get_towns(regions):
 
 def get_town_entries(gemeinde_ids):
     entries = []
-    gablparser = gablhtmlparser.GablHtmlParser()
     for gemeinde_id in gemeinde_ids:
         logging.info(f"downloading town calendar of {gemeinde_id}...")
+        gablparser = gablhtmlparser.GablHtmlParser()
         gablparser.feed(download.get_entries_page(gemeinde_id))
         new_entries = list(map(lambda line: gablhtmlparser.parseCalendarEntry(gemeinde_id, line), gablparser.entries))
         logging.info(f"downloaded town calendar of {gemeinde_id}.")

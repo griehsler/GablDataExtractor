@@ -4,8 +4,11 @@ from CalendarEntry import CalendarEntry
 from Town import Town
 
 class GablHtmlParser(html.parser.HTMLParser):
-    inEntry = False
-    entries = []
+
+    def __init__(self):
+        self.inEntry = False
+        self.entries = []
+        super().__init__()
 
     def handle_starttag(self, tag, attrs):
         if tag == 'div':
