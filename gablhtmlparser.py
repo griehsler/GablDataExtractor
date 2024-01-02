@@ -6,9 +6,9 @@ from Town import Town
 class GablHtmlParser(html.parser.HTMLParser):
 
     def __init__(self):
+        super().__init__()
         self.inEntry = False
         self.entries = []
-        super().__init__()
 
     def handle_starttag(self, tag, attrs):
         if tag == 'div':
